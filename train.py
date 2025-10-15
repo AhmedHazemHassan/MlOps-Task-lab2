@@ -7,7 +7,7 @@ import joblib
 DATA_DIR = 'data'
 TRAINED_MODEL_DIR = 'models'
 TRAIN_PATH = os.path.join(DATA_DIR, 'train.csv')
-LOG_MODEL_PATH = os.path.join(TRAINED_MODEL_DIR, 'logistic_model.pkl')
+LOG_MODEL_PATH = os.path.join(TRAINED_MODEL_DIR, 'model.pkl')
 TARGET_COL = 'company_size'
 
 # Load training data
