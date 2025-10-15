@@ -1,0 +1,73 @@
+schema: '2.0'
+stages:
+  check_data:
+    cmd: python check_data.py
+    deps:
+    - path: check_data.py
+      hash: md5
+      md5: ef4c8b34a6cfcc5b8d82171b60fe4729
+      size: 312
+    - path: data/salaries.csv
+      hash: md5
+      md5: 3b294a7e53d8199ad8c4410752f8991d
+      size: 4054216
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+    - path: data/salaries.csv
+      hash: md5
+      md5: 3b294a7e53d8199ad8c4410752f8991d
+      size: 4054216
+    - path: preprocess.py
+      hash: md5
+      md5: 38c4ffd749f47e5bb15ac67a0fd608a8
+      size: 1487
+    outs:
+    - path: data/test.csv
+      hash: md5
+      md5: 7a414ff9b048824230a3524dc2f1b8b3
+      size: 1811793
+    - path: data/train.csv
+      hash: md5
+      md5: d3c07a7903432dc8685d4a6c3cbd4b99
+      size: 4227544
+  train:
+    cmd: python train.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: d3c07a7903432dc8685d4a6c3cbd4b99
+      size: 4227544
+    - path: train.py
+      hash: md5
+      md5: 6b44f762a7220be1f6cdf7a6e39e3e9c
+      size: 783
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: ca11e65a20e93dd2be734cc9c3aad66f
+      size: 1935
+  validate:
+    cmd: python validation.py
+    deps:
+    - path: data/test.csv
+      hash: md5
+      md5: 7a414ff9b048824230a3524dc2f1b8b3
+      size: 1811793
+    - path: models/model.pkl
+      hash: md5
+      md5: ca11e65a20e93dd2be734cc9c3aad66f
+      size: 1935
+    - path: validation.py
+      hash: md5
+      md5: 3e96b4638296d06e784f200db9a16b37
+      size: 1626
+    outs:
+    - path: results/accuracy.json
+      hash: md5
+      md5: 4bce735f96128b61be9b995451ae22f5
+      size: 38
+    - path: results/confusion_matrix.png
+      hash: md5
+      md5: 17ede42ec4ac7876ccb84ab4d1177716
+      size: 25320

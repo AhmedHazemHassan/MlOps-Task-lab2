@@ -1,0 +1,33 @@
+stages:
+  check_data:
+    cmd: python check_data.py
+    deps:
+      - check_data.py
+      - data/salaries.csv
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+      - preprocess.py
+      - data/salaries.csv
+    outs:
+      - data/train.csv
+      - data/test.csv
+  train:
+    cmd: python train.py
+    deps:
+      - train.py
+      - data/train.csv
+    outs:
+      - models/model.pkl
+  validate:
+    cmd: python validation.py
+    deps:
+      - validation.py
+      - data/test.csv
+      - models/model.pkl
+    metrics:
+      - results/accuracy.json:
+          cache: false
+    plots:
+      - results/confusion_matrix.png:
+          cache: false
