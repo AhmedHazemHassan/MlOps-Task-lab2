@@ -1,12 +1,10 @@
-import pandas as pd
 import os
 
-# URL for the Iris dataset
-url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv'
-df = pd.read_csv(url)
+DATA_DIR = 'data'
+DATASET_FILE = 'salaries.csv' 
+file_path = os.path.join(DATA_DIR, DATASET_FILE)
 
-# Ensure the data directory exists
-os.makedirs('data', exist_ok=True)
-
-# Save the raw data
-df.to_csv('data/data_raw.csv', index=False)
+if os.path.isfile(file_path):
+	print(f"Dataset found: {file_path}")
+else:
+	print(f"Dataset NOT found in '{DATA_DIR}'. Please download '{DATASET_FILE}' and place it in the '{DATA_DIR}' folder.")
