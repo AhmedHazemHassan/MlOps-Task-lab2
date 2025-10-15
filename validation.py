@@ -15,7 +15,6 @@ MODEL_PATH = os.path.join(TRAINED_MODEL_DIR, 'model.pkl')
 REPORT_PATH = os.path.join(RESULT_DIR, 'accuracy.json')
 CONF_MATRIX_PATH = os.path.join(RESULT_DIR, 'confusion_matrix.png')
 TARGET_COL = 'company_size'
-CONF_SUBSET = 5  # Number of classes to show in confusion matrix plot
 
 # Model accuracy only
 # Load test data
@@ -24,11 +23,11 @@ X_test = df.drop(TARGET_COL, axis=1)
 y_test = df[TARGET_COL]
 
 
-# Load trained Random Forest model
-rf = joblib.load(MODEL_PATH)
+# Load trained XGBoost classifier
+xgb_clf = joblib.load(MODEL_PATH)
 
 # Predict
-y_pred = rf.predict(X_test)
+y_pred = xgb_clf.predict(X_test)
 
 # Ensure results directory exists
 if not os.path.exists(RESULT_DIR):
