@@ -24,11 +24,11 @@ X_test = df.drop(TARGET_COL, axis=1)
 y_test = df[TARGET_COL]
 
 
-# Load trained logistic regression model
-log_reg = joblib.load(MODEL_PATH)
+# Load trained Random Forest model
+rf = joblib.load(MODEL_PATH)
 
 # Predict
-y_pred = log_reg.predict(X_test)
+y_pred = rf.predict(X_test)
 
 # Ensure results directory exists
 if not os.path.exists(RESULT_DIR):
