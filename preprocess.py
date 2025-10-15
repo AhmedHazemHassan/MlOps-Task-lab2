@@ -47,4 +47,4 @@ train_df, test_df = train_test_split(df, test_size=0.3, random_state=42, stratif
 # Step 5: Output train and test CSVs
 train_df.to_csv(TRAIN_PATH, index=False)
 test_df.to_csv(TEST_PATH, index=False)
-print(f"Train and test files saved to '{DATA_DIR}' folder.")
+print(f"Train and test files saved to '{DATA_DIR}' folder.") 
